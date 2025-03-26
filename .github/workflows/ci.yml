@@ -36,7 +36,9 @@ jobs:
       - name: Analyse des dépendances avec Snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk test --all-projects
+        run: |
+          pip install -r requirements.txt
+          snyk test --all-projects
   deploy:
     needs: verify
     runs-on: ubuntu-latest
